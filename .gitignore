@@ -1,0 +1,14 @@
+# IDE Configs
+.vscode/
+
+# Temporary Files
+tmp/
+
+# Modules
+**/node_modules/
+
+# Database
+**/db/
+
+# Secrets
+**/.env

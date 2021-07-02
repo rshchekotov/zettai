@@ -1,0 +1,27 @@
+version: "3.9"
+services: 
+  discord:
+    build:
+      context: .
+      target: dev
+      dockerfile: ./discord/Dockerfile
+    volumes: 
+      - ./discord:/home/app
+    env_file: .env
+    ports: 
+      - "7001:80"
+    depends_on: 
+      - "zettai_db"
+  zettai_db:
+    image: mongo
+    env_file: .env
+    volumes:
+      - ./zettai_db/db:/data/db
+    working_dir: /data
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: $MONGO_DB_USER
+      MONGO_INITDB_ROOT_PASSWORD: $MONGO_DB_PASS
+    ports: 
+      - "7101:27017"
+      - "7102:28017"
+
